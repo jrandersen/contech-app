@@ -70,11 +70,9 @@ function App() {
 
   return (
     <div style={{ paddingTop: '100px', paddingBottom: '30px' }}>
-      <header style={headerStyle}>
-        <h1>CONTECH TOOLS.FYI</h1>
-      </header>
+    <header style={headerStyle}>
+      <h1>CONTECH TOOLS.FYI</h1>
       <div style={newsLetterStyle}>
-        <h2>Subscribe to get new tools weekly!</h2>
         <form onSubmit={handleSubscribe}>
           <input
             type="email"
@@ -86,6 +84,7 @@ function App() {
           <button type="submit">Subscribe</button>
         </form>
       </div>
+    </header>
       <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}>
         <ul>
           {apps.map((app) => (
@@ -111,7 +110,7 @@ function App() {
         </div>
       )}
       <footer style={footerStyle}>
-        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gamil.com">andersen.ja@gamil.com</a></p>
+        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gmail.com">andersen.ja@gmail.com</a></p>
       </footer>
     </div>
   );
@@ -119,24 +118,22 @@ function App() {
 
 // Inline styles for the header, newsletter, modal, and footer
 const headerStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   position: 'fixed',
   top: '0',
   width: '100%',
   backgroundColor: '#f5f4f0',
   color: '#333',
-  padding: '15px 0',
-  textAlign: 'center',
+  padding: '10px',
   zIndex: '999'
 };
 
 const newsLetterStyle = {
-  position: 'sticky', 
-  top: '0', 
-  zIndex: '999', 
-  backgroundColor: '#fff', 
-  padding: '10px',
-  textAlign: 'center',
-  borderBottom: '4px solid #ddd' 
+  display: 'flex',
+  alignItems: 'center',
+  padding: '20px',
 };
 
 const modalStyle = {
@@ -175,7 +172,7 @@ const footerStyle = {
   position: 'fixed',
   bottom: '0',
   width: '100%',
-  backgroundColor: '#0000',
+  backgroundColor: '#fff',
   color: '#333',
   padding: '10px 0',
   textAlign: 'center',
