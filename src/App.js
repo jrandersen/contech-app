@@ -67,7 +67,39 @@ function App() {
   };
 
   return (
-    // ... (the rest of the component remains the same)
+    <div>
+      <h1>Construction Tech Applications</h1>
+      <ul>
+        {apps.map((app) => (
+          <li key={app.id} onClick={() => handleAppClick(app)}>
+            {app.name}
+          </li>
+        ))}
+      </ul>
+      {selectedApp && (
+        <div>
+          <h2>{selectedApp.name}</h2>
+          <img src={selectedApp.company_image} alt={`${selectedApp.name} logo`} />
+          <p>
+            Website: <a href={selectedApp.url} target="_blank" rel="noopener noreferrer">{selectedApp.url}</a>
+          </p>
+          <p>Votes: {selectedApp.votes}</p>
+          <button onClick={() => handleVote(selectedApp, 1)}>Upvote</button>
+          <button onClick={() => handleVote(selectedApp, -1)}>Downvote</button>
+        </div>
+      )}
+      <h2>Subscribe to Newsletter</h2>
+      <form onSubmit={handleSubscribe}>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter your email"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
   );
 }
 
