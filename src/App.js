@@ -9,10 +9,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
 const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
 
-console.log('Supabase Key:', process.env.REACT_APP_SUPABASE_KEY);
-console.log('Mailchimp URL:', process.env.REACT_APP_MAILCHIMP_URL);
-console.log('Mailchimp API Key:', process.env.REACT_APP_MAILCHIMP_API_KEY);
-
 function App() {
   const [apps, setApps] = useState([]);
   const [selectedApp, setSelectedApp] = useState(null);
@@ -75,16 +71,16 @@ function App() {
   return (
     <div style={{ paddingTop: '100px' }}>
       <header style={headerStyle}>
-        <h1>Construction Tech Applications</h1>
+        <h1>CONTECH TOOLS.FYI</h1>
       </header>
       <div style={newsLetterStyle}>
-        <h2>Subscribe to Newsletter</h2>
+        <h2>Subscribe to get new tools weekly!</h2>
         <form onSubmit={handleSubscribe}>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
+            placeholder="email"
             required
           />
           <button type="submit">Subscribe</button>
