@@ -69,24 +69,24 @@ function App() {
   };
 
   return (
-    <div style={{ paddingTop: '100px', paddingBottom: '30px' }}>
-    <header style={headerStyle}>
-      <h1>CONTECH TOOLS.FYI</h1>
-      <div style={newsLetterStyle}>
-        <form onSubmit={handleSubscribe}>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-            required
-          />
-          <button type="submit">Subscribe</button>
-        </form>
-      </div>
-    </header>
-      <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}>
-        <ul>
+    <div style={{ paddingTop: '100px', paddingBottom: '30px' }}> {/* Adjust the padding values */}
+      <header style={headerStyle}>
+        <h1>CONTECH TOOLS</h1>
+        <div style={newsLetterStyle}>
+          <form onSubmit={handleSubscribe}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="email"
+              required
+            />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </header>
+      <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}> {/* Adjust the height */}
+        <ul style={{ paddingTop: '60px' }}> {/* Add padding equal to the height of the header */}
           {apps.map((app) => (
             <li key={app.id} onClick={() => handleAppClick(app)}>
               {app.name}
@@ -110,31 +110,29 @@ function App() {
         </div>
       )}
       <footer style={footerStyle}>
-        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gmail.com">andersen.ja@gmail.com</a></p>
+        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:info@contechtools.fyi">info@contechtools.fyi</a></p>
       </footer>
     </div>
+
   );
 }
 
 // Inline styles for the header, newsletter, modal, and footer
 const headerStyle = {
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
+  textAlign: 'center',
   position: 'fixed',
   top: '0',
   width: '100%',
   backgroundColor: '#f5f4f0',
   color: '#333',
-  padding: '10px',
+  padding: '15px',
   zIndex: '999'
 };
 
 const newsLetterStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  padding: '20px',
+  marginTop: '10px'
 };
+
 
 const modalStyle = {
   display: 'block', /* Show the modal */
