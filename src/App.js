@@ -9,10 +9,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
 const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
 
-console.log('Supabase Key:', process.env.REACT_APP_SUPABASE_KEY);
-console.log('Mailchimp URL:', process.env.REACT_APP_MAILCHIMP_URL);
-console.log('Mailchimp API Key:', process.env.REACT_APP_MAILCHIMP_API_KEY);
-
 function App() {
   const [apps, setApps] = useState([]);
   const [selectedApp, setSelectedApp] = useState(null);
