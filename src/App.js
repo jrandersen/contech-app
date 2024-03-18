@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
+import NewAppModal from './newAppModal';
+
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -14,6 +16,7 @@ function App() {
   const [selectedApp, setSelectedApp] = useState(null);
   const [email, setEmail] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [showNewAppModal, setShowNewModal] = useState(false)
 
   useEffect(() => {
     fetchApps();
@@ -67,6 +70,12 @@ function App() {
       alert('An error occurred while subscribing to the newsletter.');
     }
   };
+  
+  const handleNewAppButtonClick = () => {
+    console.log("buttonpushed")
+    setShowNewModal(true);
+  };
+  
 
   return (
     <div style={{ paddingTop: '100px', paddingBottom: '30px' }}> {/* Adjust the padding values */}
@@ -83,6 +92,9 @@ function App() {
             />
             <button type="submit">Subscribe</button>
           </form>
+        </div>
+        <div style={newAppButton}>
+          <button onClick={handleNewAppButtonClick}>Add New Tool</button>
         </div>
       </header>
       <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}> {/* Adjust the height */}
@@ -109,8 +121,9 @@ function App() {
           </div>
         </div>
       )}
+      {showNewAppModal && <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />}
       <footer style={footerStyle}>
-        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gmail.com">andersen.ja@gmail.com</a></p>
+        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact me <a href="https://www.linkedin.com/in/jason--andersen/">here</a></p>
       </footer>
     </div>
 
@@ -133,6 +146,10 @@ const newsLetterStyle = {
   marginTop: '10px'
 };
 
+const newAppButton = {
+  textAlign: 'right',
+  marginRight: '10%',
+}
 
 const modalStyle = {
   display: 'block', /* Show the modal */
