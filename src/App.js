@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
 
-const supabaseUrl = 'YOUR_SUPABASE_URL';
-const supabaseKey = 'YOUR_SUPABASE_KEY';
+const supabaseUrl = 'SUPABASE_URL';
+const supabaseKey = 'SUPABASE_KEY';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const mailchimpUrl = 'YOUR_MAILCHIMP_URL';
-const mailchimpApiKey = 'YOUR_MAILCHIMP_API_KEY';
+const mailchimpUrl = 'MAILCHIMP_URL';
+const mailchimpApiKey = 'MAILCHIMP_API_KEY';
 
 function App() {
   const [apps, setApps] = useState([]);
