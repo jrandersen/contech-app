@@ -76,7 +76,6 @@ function App() {
     setShowNewModal(true);
   };
   
-
   return (
     <div style={{ paddingTop: '100px', paddingBottom: '30px' }}> {/* Adjust the padding values */}
       <header style={headerStyle}>
@@ -87,7 +86,7 @@ function App() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
+              placeholder="Type your email..."
               required
             />
             <button type="submit">Subscribe</button>

@@ -36,14 +36,11 @@ const NewAppModal = ({ showModal, setShowModal }) => {
     <div style={showModal ? modalStyle : { display: 'none' }}>
       <div style={modalContentStyle}>
         <span style={closeStyle} onClick={() => setShowModal(false)}>&times;</span>
-        <h2>Add New App</h2>
+        <h2>Submit an App</h2>
         <form onSubmit={handleSubmit}>
-          <label>App Name:</label>
-          <input type="text" value={appName} onChange={(e) => setAppName(e.target.value)} required style={inputStyle} />
-          <label>App URL:</label>
-          <input type="text" value={appURL} onChange={(e) => setAppURL(e.target.value)} required style={inputStyle} />
-          <label>Company Image URL:</label>
-          <input type="text" value={companyImage} onChange={(e) => setCompanyImage(e.target.value)} style={inputStyle} />
+          <input type="text" placeholder="Application Name" required value={appName} onChange={(e) => setAppName(e.target.value)} required style={inputStyle} />
+          <input type="text" placeholder="Application URL" required value={appURL} onChange={(e) => setAppURL(e.target.value)} required style={inputStyle} />
+          <input type="text" placeholder="Logo URL" value={companyImage} onChange={(e) => setCompanyImage(e.target.value)} style={inputStyle} />
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -51,14 +48,12 @@ const NewAppModal = ({ showModal, setShowModal }) => {
   );
 };
 
-
 // CSS for NewAppModal inputs
 const inputStyle = {
     display: 'block',
     width: '100%',
     marginBottom: '10px',
   };
-  
   
 const modalStyle = {
     display: 'block', /* Show the modal */
