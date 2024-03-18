@@ -69,7 +69,7 @@ function App() {
   };
 
   return (
-    <div style={{ paddingTop: '100px' }}>
+    <div style={{ paddingTop: '100px', paddingBottom: '30px' }}>
       <header style={headerStyle}>
         <h1>CONTECH TOOLS.FYI</h1>
       </header>
@@ -86,7 +86,7 @@ function App() {
           <button type="submit">Subscribe</button>
         </form>
       </div>
-      <div style={{ overflowY: 'auto', height: 'calc(100vh - 120px)' }}>
+      <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}>
         <ul>
           {apps.map((app) => (
             <li key={app.id} onClick={() => handleAppClick(app)}>
@@ -110,23 +110,25 @@ function App() {
           </div>
         </div>
       )}
+      <footer style={footerStyle}>
+        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gamil.com">andersen.ja@gamil.com</a></p>
+      </footer>
     </div>
   );
 }
 
-// Inline styles for the header
+// Inline styles for the header, newsletter, modal, and footer
 const headerStyle = {
   position: 'fixed',
   top: '0',
   width: '100%',
-  backgroundColor: '#333',
-  color: '#fff',
+  backgroundColor: '#f5f4f0',
+  color: '#333',
   padding: '15px 0',
   textAlign: 'center',
   zIndex: '999'
 };
 
-// Inline styles for the newsletter
 const newsLetterStyle = {
   position: 'sticky', 
   top: '0', 
@@ -135,9 +137,8 @@ const newsLetterStyle = {
   padding: '10px',
   textAlign: 'center',
   borderBottom: '4px solid #ddd' 
-}
+};
 
-// Inline styles for the modal
 const modalStyle = {
   display: 'block', /* Show the modal */
   position: 'fixed',
@@ -168,6 +169,17 @@ const closeStyle = {
   fontSize: '28px',
   fontWeight: 'bold',
   cursor: 'pointer'
+};
+
+const footerStyle = {
+  position: 'fixed',
+  bottom: '0',
+  width: '100%',
+  backgroundColor: '#0000',
+  color: '#333',
+  padding: '10px 0',
+  textAlign: 'center',
+  zIndex: '999'
 };
 
 export default App;
