@@ -9,6 +9,10 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
 const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
 
+console.log('Supabase Key:', process.env.REACT_APP_SUPABASE_KEY);
+console.log('Mailchimp URL:', process.env.REACT_APP_MAILCHIMP_URL);
+console.log('Mailchimp API Key:', process.env.REACT_APP_MAILCHIMP_API_KEY);
+
 function App() {
   const [apps, setApps] = useState([]);
   const [selectedApp, setSelectedApp] = useState(null);
@@ -69,28 +73,32 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>CONTECH TOOLS.FYI</h1>
-      
-      <h2>Sign up for weekly tools!</h2>
-      <form onSubmit={handleSubscribe}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter your email"
-          required
-        />
-        <button type="submit">Subscribe</button>
-      </form>
-      
-      <ul>
-        {apps.map((app) => (
-          <li key={app.id} onClick={() => handleAppClick(app)}>
-            {app.name}
-          </li>
-        ))}
-      </ul>
+    <div style={{ paddingTop: '100px' }}>
+      <header style={headerStyle}>
+        <h1>Construction Tech Applications</h1>
+      </header>
+      <div style={newsLetterStyle}>
+        <h2>Subscribe to Newsletter</h2>
+        <form onSubmit={handleSubscribe}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div style={{ overflowY: 'auto', height: 'calc(100vh - 120px)' }}>
+        <ul>
+          {apps.map((app) => (
+            <li key={app.id} onClick={() => handleAppClick(app)}>
+              {app.name}
+            </li>
+          ))}
+        </ul>
+      </div>
       {showModal && selectedApp && (
         <div style={modalStyle}>
           <div style={modalContentStyle}>
@@ -106,9 +114,31 @@ function App() {
           </div>
         </div>
       )}
-
     </div>
   );
+}
+
+// Inline styles for the header
+const headerStyle = {
+  position: 'fixed',
+  top: '0',
+  width: '100%',
+  backgroundColor: '#333',
+  color: '#fff',
+  padding: '15px 0',
+  textAlign: 'center',
+  zIndex: '999'
+};
+
+// Inline styles for the newsletter
+const newsLetterStyle = {
+  position: 'sticky', 
+  top: '0', 
+  zIndex: '999', 
+  backgroundColor: '#fff', 
+  padding: '10px',
+  textAlign: 'center',
+  borderBottom: '4px solid #ddd' 
 }
 
 // Inline styles for the modal
