@@ -110,7 +110,7 @@ function App() {
         </div>
       )}
       <footer style={footerStyle}>
-        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:info@contechtools.fyi">info@contechtools.fyi</a></p>
+        <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact <a href="mailto:andersen.ja@gmail.com">andersen.ja@gmail.com</a></p>
       </footer>
     </div>
 
