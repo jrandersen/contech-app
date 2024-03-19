@@ -172,15 +172,32 @@ const SubscribeForm = styled.form`
 `;
 
 const EmailInput = styled.input`
-  margin-right: 5px; 
+font-size: 1em;
+margin: 1em;
+padding: 0.25em 1em;
+border: 2px solid #BF4F74;
+border-radius: 3px;
+margin-right: 5px; 
 `;
 
 const SubscribeButton = styled.button`
-  margin-right: 20px; 
+color: #BF4F74;
+font-size: 1em;
+margin: 1em;
+padding: 0.25em 1em;
+border: 2px solid #BF4F74;
+border-radius: 3px;
+margin-right: 20px; 
 `;
 
 const AddNewAppButton = styled.button`
-  margin-right: 40px; 
+color: #BF4F74;
+font-size: 1em;
+margin: 1em;
+padding: 0.25em 1em;
+border: 2px solid #BF4F74;
+border-radius: 3px;
+margin-right: 40px; 
 `
 
 const modalStyle = {
