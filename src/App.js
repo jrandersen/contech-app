@@ -28,13 +28,17 @@ function App() {
   }, []);
 
   const fetchApps = async () => {
-    const { data, error } = await supabase.from('construction_apps').select('*');
+    const { data, error } = await supabase
+      .from('construction_apps')
+      .select('*')
+      .order('votes', { ascending: false }); // Order by 'votes' column in descending order
     if (error) {
       console.error('Error fetching apps:', error);
     } else {
       setApps(data);
     }
   };
+  
 
   const handleAppClick = (app) => {
     setSelectedApp(app);
@@ -87,21 +91,19 @@ function App() {
     <AppContainer>
       <Header>
         <h1>CONTECH TOOLS</h1>
-        <div style={newsLetterStyle}>
-          <form onSubmit={handleSubscribe}>
-            <input
+        <FormContainer>
+          <SubscribeForm onSubmit={handleSubscribe}>
+            <EmailInput
               type="email"
               name="EMAIL"
               required
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Type your email..."
             />
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-        <div style={newAppButton}>
-          <button onClick={handleNewAppButtonClick}>Add New Tool</button>
-        </div>
+            <SubscribeButton type="submit">Subscribe</SubscribeButton>
+          </SubscribeForm>
+          <AddNewAppButton onClick={handleNewAppButtonClick}>Add New Tool</AddNewAppButton>
+        </FormContainer>
       </Header>
       <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}> {/* Adjust the height */}
       {apps.map((app) => (
@@ -140,7 +142,15 @@ function App() {
 }
 
 // Inline styles for the header, newsletter, modal, and footer
+const AppContainer = styled.div`
+  padding-top: 130px;
+  padding-bottom: 30px;
+`;
+
 const Header = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   text-align: center;
   position: fixed;
   top: 0;
@@ -151,19 +161,27 @@ const Header = styled.header`
   z-index: 999;
 `;
 
-const AppContainer = styled.div`
-  padding-top: 160px;
-  padding-bottom: 30px;
+const FormContainer = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
-const newsLetterStyle = {
-  marginTop: '10px'
-};
+const SubscribeForm = styled.form`
+  display: flex;
+  align-items: center;
+`;
 
-const newAppButton = {
-  textAlign: 'right',
-  marginRight: '10%',
-}
+const EmailInput = styled.input`
+  margin-right: 5px; 
+`;
+
+const SubscribeButton = styled.button`
+  margin-right: 20px; 
+`;
+
+const AddNewAppButton = styled.button`
+  margin-right: 40px; 
+`
 
 const modalStyle = {
   display: 'block', /* Show the modal */
