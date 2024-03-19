@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AppModal = ({ showModal, selectedApp, handleVote, setShowModal }) => {
-  if (!showModal || !selectedApp) {
+    console.log('showModal:', showModal);
+    if (!showModal || !selectedApp) {
     return null; // Do not render anything if showModal is false or selectedApp is null
   }
 

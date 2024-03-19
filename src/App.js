@@ -87,6 +87,34 @@ function App() {
     setShowNewModal(true);
   };
 
+  const handleUpdate = async (updatedApp) => {
+    const { error } = await supabase
+      .from('construction_apps')
+      .update(updatedApp)
+      .eq('id', updatedApp.id);
+    if (error) {
+      console.error('Error updating app:', error);
+    } else {
+      fetchApps();
+    }
+  };
+
+  const handleDelete = async (appId) => {
+    try {
+      const { error } = await supabase.from('construction_apps').delete().eq('id', appId);
+      if (error) {
+        throw error;
+      }
+      // If deletion is successful, update the apps state to reflect the changes
+      const updatedApps = apps.filter((app) => app.id !== appId);
+      setApps(updatedApps);
+      console.log('App deleted successfully.');
+      alert('App deleted successfully.');
+    } catch (error) {
+      console.error('Error deleting app:', error.message);
+    }
+  };
+
   return (
     <AppContainer>
       <Header
@@ -94,8 +122,19 @@ function App() {
         handleNewAppButtonClick={handleNewAppButtonClick}
         setEmail={setEmail}
       />
-      <AppList apps={apps} handleAppClick={handleAppClick} />
-      {showModal && <AppModal showModal={showModal} selectedApp={selectedApp} setShowModal={setShowModal} handleVote={handleVote}/>}
+      <AppList
+        apps={apps}
+        handleAppClick={handleAppClick}
+        handleUpdate={handleUpdate}
+        handleDelete={handleDelete}  // Pass handleUpdate to AppList
+      />
+      {selectedApp && (
+      <AppModal 
+        showModal={showModal} 
+        selectedApp={selectedApp} 
+        handleVote={handleVote} 
+        setShowModal={setShowModal} 
+      />)}
       <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />
       <Footer />
     </AppContainer>
