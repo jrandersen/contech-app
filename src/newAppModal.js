@@ -38,8 +38,8 @@ const NewAppModal = ({ showModal, setShowModal }) => {
         <span style={closeStyle} onClick={() => setShowModal(false)}>&times;</span>
         <h2>Submit an App</h2>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Application Name" required value={appName} onChange={(e) => setAppName(e.target.value)} required style={inputStyle} />
-          <input type="text" placeholder="Application URL" required value={appURL} onChange={(e) => setAppURL(e.target.value)} required style={inputStyle} />
+          <input type="text" placeholder="Application Name" required value={appName} onChange={(e) => setAppName(e.target.value)} style={inputStyle} />
+          <input type="text" placeholder="Application URL" required value={appURL} onChange={(e) => setAppURL(e.target.value)} style={inputStyle} />
           <input type="text" placeholder="Logo URL" value={companyImage} onChange={(e) => setCompanyImage(e.target.value)} style={inputStyle} />
           <button type="submit">Submit</button>
         </form>

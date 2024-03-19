@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
 import NewAppModal from './newAppModal';
-
+import styled from 'styled-components';
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -10,6 +10,11 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
 const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
+
+console.log('Mailchimp API Key:', process.env.REACT_APP_MAILCHIMP_API_KEY);
+
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+
 
 function App() {
   const [apps, setApps] = useState([]);
@@ -37,7 +42,7 @@ function App() {
   };
 
   const handleVote = async (app, vote) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('construction_apps')
       .update({ votes: app.votes + vote })
       .eq('id', app.id);
@@ -71,23 +76,25 @@ function App() {
     }
   };
   
+  
   const handleNewAppButtonClick = () => {
-    console.log("buttonpushed")
+    // console.log("buttonpushed")
     setShowNewModal(true);
   };
-  
+
+
   return (
-    <div style={{ paddingTop: '100px', paddingBottom: '30px' }}> {/* Adjust the padding values */}
-      <header style={headerStyle}>
+    <AppContainer>
+      <Header>
         <h1>CONTECH TOOLS</h1>
         <div style={newsLetterStyle}>
           <form onSubmit={handleSubscribe}>
             <input
               type="email"
-              value={email}
+              name="EMAIL"
+              required
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Type your email..."
-              required
             />
             <button type="submit">Subscribe</button>
           </form>
@@ -95,15 +102,18 @@ function App() {
         <div style={newAppButton}>
           <button onClick={handleNewAppButtonClick}>Add New Tool</button>
         </div>
-      </header>
+      </Header>
       <div style={{ overflowY: 'auto', height: 'calc(100vh - 220px)' }}> {/* Adjust the height */}
-        <ul style={{ paddingTop: '60px' }}> {/* Add padding equal to the height of the header */}
-          {apps.map((app) => (
-            <li key={app.id} onClick={() => handleAppClick(app)}>
-              {app.name}
-            </li>
-          ))}
-        </ul>
+      {apps.map((app) => (
+        <Card key={app.id} onClick={() => handleAppClick(app)}>
+        <li>
+          <div>
+            <h2>{app.name}</h2>
+            <p>Total Votes: {app.votes || 0}</p>
+          </div>
+        </li>
+      </Card>
+        ))}
       </div>
       {showModal && selectedApp && (
         <div style={modalStyle}>
@@ -124,22 +134,27 @@ function App() {
       <footer style={footerStyle}>
         <p>&copy; 2024 CONTECH TOOLS.FYI | For more information, contact me <a href="https://www.linkedin.com/in/jason--andersen/">here</a></p>
       </footer>
-    </div>
+    </AppContainer>
 
   );
 }
 
 // Inline styles for the header, newsletter, modal, and footer
-const headerStyle = {
-  textAlign: 'center',
-  position: 'fixed',
-  top: '0',
-  width: '100%',
-  backgroundColor: '#f5f4f0',
-  color: '#333',
-  padding: '15px',
-  zIndex: '999'
-};
+const Header = styled.header`
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #f5f4f0;
+  color: #333;
+  padding: 15px;
+  z-index: 999;
+`;
+
+const AppContainer = styled.div`
+  padding-top: 160px;
+  padding-bottom: 30px;
+`;
 
 const newsLetterStyle = {
   marginTop: '10px'
@@ -186,11 +201,32 @@ const footerStyle = {
   position: 'fixed',
   bottom: '0',
   width: '100%',
-  backgroundColor: '#fff',
+  backgroundColor: '#f5f4f0',
   color: '#333',
   padding: '10px 0',
   textAlign: 'center',
   zIndex: '999'
 };
+
+const Card = styled.ul`
+  list-style-type: none;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+`;
+
 
 export default App;
