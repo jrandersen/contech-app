@@ -17,15 +17,15 @@ const Button = styled.button`
   font-weight: bold;
   text-decoration: none;
   padding: .5em 1em;
-  background-color: #333;
+  background-color: #1F3251;
   border-radius: 8px;
   margin-right: 40px;
   margin-bottom: 10px;
   transition: background-color 0.3s; /* Add transition for smooth effect */
 
   &:hover {
-    background-color: #ffef00;
-    color: #333; /* Change text color on hover */
+    background-color: #D64800;
+    color: #1F3251; /* Change text color on hover */
   }
 `;
 // Define a styled anchor component

@@ -49,7 +49,7 @@ const EmailInput = styled.input`
   font-size: 1em;
   margin-right: 5px; /* Add margin-right to create space between the input and button */
   padding: 0.45em 1em;
-  border: 2px solid #333;
+  border: 2px solid #1F3251;
   border-radius: 3px;
 `;
 
@@ -58,14 +58,14 @@ color: #fff;
 font-size: 1em;
 font-weight: bold;
 padding: .5em 1em;
-background-color: #333;
+background-color: #1F3251;
 border-radius: 8px;
 margin-right: 40px;
 transition: background-color 0.3s; /* Add transition for smooth effect */
 
 &:hover {
-  background-color: #ffef00;
-  color: #333; /* Change text color on hover */
+  background-color: #D64800;
+  color: #1F3251; /* Change text color on hover */
 }
 `;
 
@@ -74,14 +74,14 @@ const AddNewAppButton = styled.button`
   font-size: 1em;
   font-weight: bold;
   padding: .5em 1em;
-  background-color: #333;
+  background-color: #1F3251;
   border-radius: 8px;
   margin-right: 40px;
   transition: background-color 0.3s; /* Add transition for smooth effect */
 
   &:hover {
-    background-color: #ffef00;
-    color: #333; /* Change text color on hover */
+    background-color: #D64800;
+    color: #1F3251; /* Change text color on hover */
   }
 `;
 
