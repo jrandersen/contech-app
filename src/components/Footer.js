@@ -10,15 +10,12 @@ const Footer = () => {
 };
 
 const FooterContainer = styled.footer`
-  position: fixed;
   bottom: 0;
-  width: 100%;
   background-color: #f5f4f0;
   color: #333;
   padding: 10px 0;
   text-align: center;
   z-index: 999;
 `;
-
 
 export default Footer;

@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'; 
 
 const Header = ({ handleSubscribe, handleNewAppButtonClick, setEmail }) => {
   return (
     <HeaderContainer>
-      <h1>CONTECH TOOLS</h1>
+      <Link to="/">
+        <h1>CONTECH TOOLS</h1>
+      </Link>
       <FormContainer onSubmit={handleSubscribe}>
         <EmailInput
           type="email"
@@ -25,13 +28,11 @@ const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  position: fixed;
   top: 0;
-  width: 100%;
   background-color: #f5f4f0;
   color: #333;
   padding: 15px;
-  z-index: 999;
+  z-index: 1000;
 `;
 
 const FormContainer = styled.form`

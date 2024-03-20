@@ -10,3 +10,4 @@ const root = createRoot(rootElement);
 root.render(<App />);
 
 reportWebVitals(sendToVercelAnalytics);
+
