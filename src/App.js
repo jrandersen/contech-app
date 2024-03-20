@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import axios from 'axios';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppList from './components/AppList';
 import NewAppModal from './components/NewAppModal'
-import AppModal from './components/AppModal';
+import AppDetails from './components/AppDetails';
 import styled from 'styled-components';
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
@@ -14,16 +15,12 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
 const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
-
 // console.log('Mailchimp API Key:', process.env.REACT_APP_MAILCHIMP_API_KEY);
-
-const mailchimp = require("@mailchimp/mailchimp_marketing");
+// const mailchimp = require("@mailchimp/mailchimp_marketing");
 
 function App() {
   const [apps, setApps] = useState([]);
-  const [selectedApp, setSelectedApp] = useState(null);
   const [email, setEmail] = useState('');
-  const [showModal, setShowModal] = useState(false);
   const [showNewAppModal, setShowNewModal] = useState(false)
 
   useEffect(() => {
@@ -42,11 +39,6 @@ function App() {
     }
   };
 
-  const handleAppClick = (app) => {
-    console.log("button clicked")
-    setSelectedApp(app);
-    setShowModal(true);
-  };
 
   const handleVote = async (app, vote) => {
     const { error } = await supabase
@@ -115,28 +107,22 @@ function App() {
     }
   };
 
+
   return (
     <AppContainer>
-      <Header
-        handleSubscribe={handleSubscribe}
-        handleNewAppButtonClick={handleNewAppButtonClick}
-        setEmail={setEmail}
-      />
-      <AppList
-        apps={apps}
-        handleAppClick={handleAppClick}
-        handleUpdate={handleUpdate}
-        handleDelete={handleDelete}  // Pass handleUpdate to AppList
-      />
-      {selectedApp && (
-      <AppModal 
-        showModal={showModal} 
-        selectedApp={selectedApp} 
-        handleVote={handleVote} 
-        setShowModal={setShowModal} 
-      />)}
-      <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />
-      <Footer />
+      <Router>
+        <Header
+          handleSubscribe={handleSubscribe}
+          handleNewAppButtonClick={handleNewAppButtonClick}
+          setEmail={setEmail}
+        />
+        <Routes>
+          <Route exact path="/" element={<AppList apps={apps} handleUpdate={handleUpdate} handleDelete={handleDelete} />} />
+          <Route path="/app/:id" element={<AppDetails apps={apps} handleVote={handleVote} />} />
+        </Routes>
+        <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />
+        <Footer />
+      </Router>
     </AppContainer>
   );
 }
