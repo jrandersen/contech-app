@@ -2,11 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 
+
 const Header = ({ handleSubscribe, handleNewAppButtonClick, setEmail }) => {
   return (
     <HeaderContainer>
       <Link to="/">
-        <h1>CONTECH TOOLS</h1>
+        <h1> 
+          <img src="/contech_tools.png" alt="Logo" width="400" /> 
+        </h1>
       </Link>
       <FormContainer onSubmit={handleSubscribe}>
         <EmailInput

@@ -11,6 +11,32 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const Container = styled.div`
   padding-left: 40px; /* Add left padding */
 `;
+const Button = styled.button`
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  padding: .5em 1em;
+  background-color: #333;
+  border-radius: 8px;
+  margin-right: 40px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s; /* Add transition for smooth effect */
+
+  &:hover {
+    background-color: #ffef00;
+    color: #333; /* Change text color on hover */
+  }
+`;
+// Define a styled anchor component
+const StyledAnchor = styled.a`
+  color: white;
+  text-decoration: none;
+  
+  &:hover {
+    color: #333; /* Change text color on hover */
+  }
+`;
 
 const AppDetails = ({ handleVote }) => {
   const { id } = useParams();
@@ -37,13 +63,40 @@ const AppDetails = ({ handleVote }) => {
   if (!app) {
     return <div>Loading...</div>;
   }
+  
+function removeHttpAndWww(url) {
+  // Remove HTTP(S)
+  if (url.startsWith("https://")) {
+      url = url.slice(8); // Remove first 8 characters ("https://")
+  } else if (url.startsWith("http://")) {
+      url = url.slice(7); // Remove first 7 characters ("http://")
+  }
 
-  return (
+  // Remove WWW
+  if (url.startsWith("www.")) {
+      url = url.slice(4); // Remove first 4 characters ("www.")
+  }
+
+  return url;
+}
+
+const cleanUrlForLogo = removeHttpAndWww(app.url);
+const logo = `https://logo.clearbit.com/${cleanUrlForLogo}`;
+  
+return (
     <Container>
       <h2>{app.name}</h2>
+      <img
+        src= {logo}
+        alt="Logo"
+      />
       <p>{app.description}</p>
       <p>Total Votes: {app.votes || 0}</p>
-      <p>URL: {app.url || 'N/A'}</p> {/* Display 'N/A' if URL is not provided */}
+      
+      <Button>
+        <StyledAnchor href={app.url} target="_blank">Check it out!</StyledAnchor>
+      </Button>
+
       {/* Add more details about the app */}
       <button onClick={() => handleVote(app, 1)}>Upvote</button>
       <button onClick={() => handleVote(app, -1)}>Downvote</button>
