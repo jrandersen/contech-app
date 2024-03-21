@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
+//import ReactPaginate from 'react-paginate';
 import { createClient } from '@supabase/supabase-js';
-import axios from 'axios';
+import LoopsClient from "loops";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppList from './components/AppList';
@@ -13,9 +13,8 @@ import styled from 'styled-components';
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
-
-const mailchimpUrl = process.env.REACT_APP_MAILCHIMP_URL;
-const mailchimpApiKey = process.env.REACT_APP_MAILCHIMP_API_KEY;
+const loopsClient = new LoopsClient('a17748aa7ee210b3760fc4010a014dc4');
+console.log(loopsClient)
 
 const AppContainer = styled.div`
   display: flex;
@@ -124,26 +123,29 @@ function App() {
     }
   };
 
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
+    
+    const contactProperties = {
+      source: "website" /* Default property */,
+    }
+
     try {
-      await axios.post(
-        `${mailchimpUrl}/subscribe`,
-        { email },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Basic ${btoa(`apikey:${mailchimpApiKey}`)}`,
-          },
-        }
-      );
+      const resp = await loopsClient.createContact( email, contactProperties );
+      console.log( email )
+      console.log('regular response', resp)
+
       alert('You have been subscribed to the newsletter!');
       setEmail('');
+    
     } catch (error) {
+      
       console.error('Error subscribing to newsletter:', error);
       alert('An error occurred while subscribing to the newsletter.');
     }
   };
+
 
   const handleNewAppButtonClick = () => {
     setShowNewModal(true);
