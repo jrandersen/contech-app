@@ -10,7 +10,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Styled component for the container
 const Container = styled.div`
   padding-left: 40px; /* Add left padding */
+  min-height: 100vh;
 `;
+
 const Button = styled.button`
   color: #fff;
   font-size: 1em;
@@ -19,6 +21,7 @@ const Button = styled.button`
   padding: .5em 1em;
   background-color: #1F3251;
   border-radius: 8px;
+  border: none;
   margin-right: 40px;
   margin-bottom: 10px;
   transition: background-color 0.3s; /* Add transition for smooth effect */
@@ -28,6 +31,7 @@ const Button = styled.button`
     color: #1F3251; /* Change text color on hover */
   }
 `;
+
 // Define a styled anchor component
 const StyledAnchor = styled.a`
   color: white;
@@ -38,6 +42,7 @@ const StyledAnchor = styled.a`
   }
 `;
 
+// Main Function
 const AppDetails = ({ handleVote }) => {
   const { id } = useParams();
   const [app, setApp] = useState(null);
@@ -60,30 +65,34 @@ const AppDetails = ({ handleVote }) => {
     fetchApp();
   }, [id]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top of the page on component mount
+  }, []); // Ensure this effect runs only once on component mount
+
   if (!app) {
-    return <div>Loading...</div>;
+    return <div style={{ minHeight: '100vh' }}>Loading...</div>;
   }
+
+  function removeHttpAndWww(url) {
+    // Remove HTTP(S)
+    if (url.startsWith("https://")) {
+        url = url.slice(8); // Remove first 8 characters ("https://")
+    } else if (url.startsWith("http://")) {
+        url = url.slice(7); // Remove first 7 characters ("http://")
+    }
+
+    // Remove WWW
+    if (url.startsWith("www.")) {
+        url = url.slice(4); // Remove first 4 characters ("www.")
+    }
+
+    return url;
+  }
+
+  const cleanUrlForLogo = removeHttpAndWww(app.url);
+  const logo = `https://logo.clearbit.com/${cleanUrlForLogo}`;
   
-function removeHttpAndWww(url) {
-  // Remove HTTP(S)
-  if (url.startsWith("https://")) {
-      url = url.slice(8); // Remove first 8 characters ("https://")
-  } else if (url.startsWith("http://")) {
-      url = url.slice(7); // Remove first 7 characters ("http://")
-  }
-
-  // Remove WWW
-  if (url.startsWith("www.")) {
-      url = url.slice(4); // Remove first 4 characters ("www.")
-  }
-
-  return url;
-}
-
-const cleanUrlForLogo = removeHttpAndWww(app.url);
-const logo = `https://logo.clearbit.com/${cleanUrlForLogo}`;
-  
-return (
+  return (
     <Container>
       <img
         src= {logo}
