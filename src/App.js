@@ -4,11 +4,11 @@ import { createClient } from '@supabase/supabase-js';
 import styled from 'styled-components';
 
 import Header from './components/Header';
-import Footer from './components/Footer';
-import AppList from './components/AppList';
-import NewAppModal from './components/NewAppModal';
+import Hero from './components/Hero'
 import AppDetails from './components/AppDetails';
 import AppSubmission from './components/AppSubmission';
+import AppList from './components/AppList';
+import Footer from './components/Footer';
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -27,7 +27,6 @@ const MainContent = styled.div`
   padding-top: 15px;
   padding-bottom: 5px;
 `;
-
 
 // Main Function
 function App() {
@@ -66,24 +65,29 @@ function App() {
         <Header
           handleNewAppButtonClick={handleNewAppButtonClick}
         />
-        <MainContent>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <AppList apps={apps} />
-              }
-            />
-            <Route path="/app/:id" element={<AppDetails />} />
-            <Route path="/newapp/" element={<AppSubmission />} />
-          </Routes>
-        </MainContent>
-        <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <>
+                <Hero />
+                <MainContent>
+                  <AppList apps={apps} />
+                </MainContent>
+              </>
+            }
+          />
+          <Route path="/app/:id" element={<AppDetails />} />
+          <Route path="/newapp/" element={<AppSubmission />} />
+        </Routes>
         <Footer />
       </Router>
     </AppContainer>
   );
 }
+
+
+
 
 export default App;
