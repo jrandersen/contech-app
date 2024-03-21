@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
@@ -75,6 +76,7 @@ function App() {
                 <Hero />
                 <MainContent>
                   <AppList apps={apps} />
+                  <SpeedInsights />
                 </MainContent>
               </>
             }

@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
+    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.8",
     "loops": "^0.3.0",
     "querystring": "^0.2.1",
