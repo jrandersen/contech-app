@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
+import { createClient } from '@supabase/supabase-js';
 
+const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
+const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
-const Header = ({ handleSubscribe, handleNewAppButtonClick, setEmail }) => {
+const Header = ({ handleNewAppButtonClick}) => {
+  const [email, setEmail] = useState('');
+  
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    try {
+      // Insert the new app data into the Supabase database
+      const { data, error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: email, source: "contect_website" }]);
+      if (error) {
+        throw error;
+      }
+      // If successful, data may contain the inserted record(s)
+      if (data) {
+        console.log("Successfully subscribed:", data);
+      } else {
+        console.log("Subscription successful, no data returned.");
+      }
+      // Clear the email field after successful subscription
+      setEmail('');
+      alert(`${ email } has been subscribed to the newsletter!`);
+    } catch (error) {
+      // Clear the email field after an unsuccessful subscription
+      setEmail('');
+      console.error('Error subscribing:', error.message);
+    }
+  };
+
   return (
     <HeaderContainer>
       <Link to="/">
@@ -16,6 +48,7 @@ const Header = ({ handleSubscribe, handleNewAppButtonClick, setEmail }) => {
           type="email"
           name="EMAIL"
           required
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Type your email..."
         />

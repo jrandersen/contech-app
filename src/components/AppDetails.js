@@ -85,11 +85,11 @@ const logo = `https://logo.clearbit.com/${cleanUrlForLogo}`;
   
 return (
     <Container>
-      <h2>{app.name}</h2>
       <img
         src= {logo}
         alt="Logo"
       />
+      <h2>{app.name}</h2>
       <p>{app.description}</p>
       <p>Total Votes: {app.votes || 0}</p>
       

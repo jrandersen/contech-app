@@ -21,6 +21,7 @@ const NewAppModal = ({ showModal, setShowModal }) => {
         throw error;
       }
       console.log('New app added:', data);
+      alert('New app added:', data);
       // Clear the input fields after successful submission
       setAppName('');
       setAppURL('');

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import ReactPaginate from 'react-paginate';
 import { createClient } from '@supabase/supabase-js';
-import LoopsClient from "loops";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import AppList from './components/AppList';
@@ -13,8 +12,6 @@ import styled from 'styled-components';
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
-const loopsClient = new LoopsClient(process.env.LOOPS_API_KEY);
-//console.log(loopsClient)
 
 const AppContainer = styled.div`
   display: flex;
@@ -45,26 +42,25 @@ const PaginationContainer = styled.div`
   justify-content: center;
 `;
 
-const PageLink = styled.a`
-  display: inline-block;
-  padding: 5px 10px;
-  margin: 0 5px;
-  background-color: ${({ active }) => (active ? '#007bff' : 'transparent')};
-  color: ${({ active }) => (active ? '#fff' : '#333')};
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;
+// const PageLink = styled.a`
+//   display: inline-block;
+//   padding: 5px 10px;
+//   margin: 0 5px;
+//   background-color: ${({ active }) => (active ? '#007bff' : 'transparent')};
+//   color: ${({ active }) => (active ? '#fff' : '#333')};
+//   border: 1px solid #ccc;
+//   cursor: pointer;
+//   transition: background-color 0.3s, color 0.3s;
+//   text-decoration: none;
 
-  &:hover {
-    background-color: #ddd;
-    color: #333;
-  }
-`;
+//   &:hover {
+//     background-color: #ddd;
+//     color: #333;
+//   }
+// `;
 
 function App() {
   const [apps, setApps] = useState([]);
-  const [email, setEmail] = useState('');
   const [showNewAppModal, setShowNewModal] = useState(false);
   const [offset, setOffset] = useState(0);
   const [perPage] = useState(12);
@@ -122,31 +118,7 @@ function App() {
       fetchApps();
     }
   };
-
-
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    
-    const contactProperties = {
-      source: "website" /* Default property */,
-    }
-
-    try {
-      const resp = await loopsClient.createContact( email, contactProperties );
-      console.log( email )
-      console.log('regular response', resp)
-
-      alert('You have been subscribed to the newsletter!');
-      setEmail('');
-    
-    } catch (error) {
-      
-      console.error('Error subscribing to newsletter:', error);
-      alert('An error occurred while subscribing to the newsletter.');
-    }
-  };
-
-
+  
   const handleNewAppButtonClick = () => {
     setShowNewModal(true);
   };
@@ -155,9 +127,7 @@ function App() {
     <AppContainer>
       <Router>
         <Header
-          handleSubscribe={handleSubscribe}
           handleNewAppButtonClick={handleNewAppButtonClick}
-          setEmail={setEmail}
         />
         <MainContent>
           <Routes>
