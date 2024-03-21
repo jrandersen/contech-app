@@ -101,7 +101,6 @@ const AppDetails = ({ handleVote }) => {
       />
       <h2>{app.name}</h2>
       <p>{app.description}</p>
-      <p>Total Votes: {app.votes || 0}</p>
       
       <Button>
         <StyledAnchor href={app.url} target="_blank">Check it out!</StyledAnchor>
