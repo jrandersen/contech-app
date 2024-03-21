@@ -11,14 +11,15 @@ const HeroSection = styled.div`
   background-color: #ffffff;
   padding: 20px;
   text-align: center;
-  max-width: 800px; /* Limiting the text width */
+  max-width: 900px; /* Limiting the text width */
   margin: 0 auto; /* Center the content horizontally */
-  height: 250px; /* Set a fixed height */
+  height: 300px; /* Set a fixed height */
   display: flex;
   flex-direction: column; /* Stack elements vertically */
   justify-content: center; /* Center vertically */
   align-items: center;
 `;
+
 const FormContainer = styled.form`
   display: flex;
   align-items: center;

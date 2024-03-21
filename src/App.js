@@ -26,6 +26,7 @@ const MainContent = styled.div`
   flex-grow: 1;
   padding-top: 15px;
   padding-bottom: 5px;
+  border-top: 1px solid #1F3251; /* Add a border line at the bottom */
 `;
 
 // Main Function

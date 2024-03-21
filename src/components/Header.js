@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   color: #333;
   padding: 15px;
   z-index: 1000;
+  border-bottom: 1px solid #1F3251; /* Add a border line at the bottom */
 `;
 
 const ButtonLink = styled(Link)`
