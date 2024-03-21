@@ -24,7 +24,7 @@ const ButtonLink = styled(Link)`
   background-color: #1F3251;
   border-radius: 8px;
   border: none;
-  margin-right: 40px;
+  margin-right: 145px;
   text-decoration: none;
   transition: background-color 0.3s;
 
@@ -38,7 +38,7 @@ const Header = ({ app }) => {
  
   return (
     <HeaderContainer>
-      <Link to="/">
+      <Link style={{ marginLeft: '145px' }} to="/">
         <h1> 
           <img src="/contech_tools.png" alt="Logo" width="400" /> 
         </h1>

@@ -6,8 +6,8 @@ import styled from 'styled-components';
 const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Align cards in a row */
-  gap: 20px; /* Add gap between cards */
+  justify-content: center; /* Align cards in a row */
+  gap: 30px; /* Add gap between cards */
 `;
 
 const AppList = ({ apps, selectedApp }) => {

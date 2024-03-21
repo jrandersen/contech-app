@@ -9,7 +9,8 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Styled component for the container
 const Container = styled.div`
-  padding-left: 40px; /* Add left padding */
+  margin-top: 10px;
+  padding-left: 145px; /* Add left padding */
   min-height: 100vh;
 `;
 

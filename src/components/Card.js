@@ -7,7 +7,7 @@ const CardContainer = styled.div`
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 10px;
-  width: calc(25% - 1px); /* Adjust width to fill space horizontally */
+  width: calc(25% - 4px); /* Adjust width to fill space horizontally */
   transition: border-color 0.3s ease;
 
   &:hover {
@@ -15,11 +15,11 @@ const CardContainer = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: calc(33.33% - 5px); /* Adjust width for smaller screens */
+    width: calc(33.33% - 4px); /* Adjust width for smaller screens */
   }
 
   @media (max-width: 576px) {
-    width: calc(50% - 5px); /* Adjust width for even smaller screens */
+    width: calc(50% - 4px); /* Adjust width for even smaller screens */
   }
 `;
 
