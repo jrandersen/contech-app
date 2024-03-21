@@ -50,18 +50,7 @@ function App() {
     }
   };
 
-  const handleVote = async (app, vote) => {
-    const { error } = await supabase
-      .from('construction_apps')
-      .update({ votes: app.votes + vote })
-      .eq('id', app.id);
-    if (error) {
-      console.error('Error updating votes:', error);
-    } else {
-      fetchApps();
-    }
-  };
-  
+
   const handleNewAppButtonClick = () => {
     setShowNewModal(true);
   };
@@ -78,10 +67,10 @@ function App() {
               exact
               path="/"
               element={
-                <AppList apps={apps} handleVote={handleVote} />
+                <AppList apps={apps} />
               }
             />
-            <Route path="/app/:id" element={<AppDetails handleVote={handleVote} />} />
+            <Route path="/app/:id" element={<AppDetails />} />
           </Routes>
         </MainContent>
         <NewAppModal showModal={showNewAppModal} setShowModal={setShowNewModal} />

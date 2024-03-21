@@ -97,9 +97,6 @@ return (
         <StyledAnchor href={app.url} target="_blank">Check it out!</StyledAnchor>
       </Button>
 
-      {/* Add more details about the app */}
-      <button onClick={() => handleVote(app, 1)}>Upvote</button>
-      <button onClick={() => handleVote(app, -1)}>Downvote</button>
     </Container>
   );
 };

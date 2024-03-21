@@ -32,14 +32,39 @@ const CardLink = styled(Link)`
   }
 `;
 
+function removeHttpAndWww(url) {
+  // Remove HTTP(S)
+  if (url.startsWith("https://")) {
+      url = url.slice(8); // Remove first 8 characters ("https://")
+  } else if (url.startsWith("http://")) {
+      url = url.slice(7); // Remove first 7 characters ("http://")
+  }
+
+  // Remove WWW
+  if (url.startsWith("www.")) {
+      url = url.slice(4); // Remove first 4 characters ("www.")
+  }
+
+  return url;
+}
+
+
+
 // Card component definition
 const Card = ({ app }) => {
+  const cleanUrlForLogo = removeHttpAndWww(app.url);
+  const logo = `https://logo.clearbit.com/${cleanUrlForLogo}`;
+  
   return (
     <CardContainer>
       <CardLink to={`/app/${app.id}`}>
         {/* Display app details */}
+        <img
+        src= {logo} width="50"
+        alt="Logo"
+        />
         <h3>{app.name}</h3>
-        <p>Total Votes: {app.votes || 0}</p>
+        <p>{app.description}</p>
       </CardLink>
     </CardContainer>
   );
