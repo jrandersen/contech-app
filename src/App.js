@@ -13,8 +13,8 @@ import styled from 'styled-components';
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
-const loopsClient = new LoopsClient('a17748aa7ee210b3760fc4010a014dc4');
-console.log(loopsClient)
+const loopsClient = new LoopsClient(process.env.LOOPS_API_KEY);
+//console.log(loopsClient)
 
 const AppContainer = styled.div`
   display: flex;
