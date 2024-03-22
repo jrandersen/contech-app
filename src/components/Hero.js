@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createClient } from '@supabase/supabase-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -54,6 +56,7 @@ transition: background-color 0.3s; /* Add transition for smooth effect */
 // Hero component
 const Hero = () => {
     const [email, setEmail] = useState('');
+    const notify = () => toast("You have been subscribed !");
     
     const handleSubscribe = async (e) => {
         e.preventDefault();
@@ -73,7 +76,8 @@ const Hero = () => {
           }
           // Clear the email field after successful subscription
           setEmail('');
-          alert(`${ email } has been subscribed to the newsletter!`);
+          notify();
+          //alert(`${ email } has been subscribed to the newsletter!`);
         } catch (error) {
           // Clear the email field after an unsuccessful subscription
           setEmail('');
@@ -97,6 +101,18 @@ const Hero = () => {
           placeholder="Type your email..."
         />
         <SubscribeButton type="submit">Subscribe</SubscribeButton>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
       </FormContainer>
     </HeroSection>
   );

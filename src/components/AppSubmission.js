@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { createClient } from '@supabase/supabase-js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const supabaseUrl = 'https://mgjxfvvcgxebiqxmvmyx.supabase.co';
 const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
@@ -70,19 +72,19 @@ const CancelButton = styled.button`
 const AppSubmission = ({ showModal, setShowModal }) => {
   const [appName, setAppName] = useState('');
   const [appURL, setAppURL] = useState('');
+  const notify = () => toast("Thanks for submitting!");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Insert the new app data into the Supabase database
-      const { data, error } = await supabase
-        .from('construction_apps')
+      const { error } = await supabase
+        .from('new_app_submissions')
         .insert([{ name: appName, url: appURL }]);
       if (error) {
         throw error;
       }
-      console.log('New app added:', data);
-      alert('New app added:', data);
+      notify();
       // Clear the input fields after successful submission
       setAppName('');
       setAppURL('');
@@ -119,6 +121,18 @@ const AppSubmission = ({ showModal, setShowModal }) => {
           <SubmitButton type="submit">Submit</SubmitButton>
           <CancelButton onClick={handleCancel}>Cancel</CancelButton>
         </ButtonGroup>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
       </FormContainer>
     </Container>
   );
