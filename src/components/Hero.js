@@ -102,7 +102,7 @@ const Hero = () => {
         />
         <SubscribeButton type="submit">Subscribe</SubscribeButton>
         <ToastContainer
-          position="bottom-center"
+          position="top-center"
           autoClose={3000}
           hideProgressBar={true}
           newestOnTop={false}

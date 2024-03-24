@@ -122,7 +122,7 @@ const AppSubmission = ({ showModal, setShowModal }) => {
           <CancelButton onClick={handleCancel}>Cancel</CancelButton>
         </ButtonGroup>
         <ToastContainer
-          position="bottom-center"
+          position="top-center"
           autoClose={3000}
           hideProgressBar={true}
           newestOnTop={false}
